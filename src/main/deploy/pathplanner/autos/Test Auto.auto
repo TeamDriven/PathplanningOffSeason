@@ -12,15 +12,34 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "deadline",
           "data": {
-            "pathName": "Test Path"
+            "commands": [
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Test Path"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "ScanCone"
+                }
+              }
+            ]
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "ConeLineUp"
+            "name": "LineUpConePath"
           }
         }
       ]

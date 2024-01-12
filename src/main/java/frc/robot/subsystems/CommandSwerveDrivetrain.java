@@ -66,7 +66,12 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
                                             TunerConstants.kSpeedAt12VoltsMps,
                                             driveBaseRadius,
                                             new ReplanningConfig()),
-            null, this); // Subsystem for requirements
+            this::shouldFlipPath, 
+            this); // Subsystem for requirements
+    }
+
+    private boolean shouldFlipPath() {
+        return false;
     }
 
     public Command applyRequest(Supplier<SwerveRequest> requestSupplier) {

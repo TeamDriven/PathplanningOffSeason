@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
 
-public class LineUpWithCubePath extends Command {
+public class LineUpWithConePath extends Command {
     private final double maxSpeed = 6.0;
 
-    private PIDController m_xPIDController = new PIDController(0.01, 0.0, 0.0);
-    private PIDController m_yPIDController = new PIDController(0.01, 0.0, 0.0);
+    private PIDController m_xPIDController = new PIDController(10.0, 0.0, 0.0);
+    private PIDController m_yPIDController = new PIDController(0.1, 0.0, 0.0);
     private PIDController m_rotPIDController = new PIDController(0.01, 0.0, 0.0);
 
     private final Limelight m_Limelight;
@@ -38,7 +38,7 @@ public class LineUpWithCubePath extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public LineUpWithCubePath(CommandSwerveDrivetrain drivetrain, Limelight limelight, String autoPath, int index) {
+  public LineUpWithConePath(CommandSwerveDrivetrain drivetrain, Limelight limelight, String autoPath, int index) {
     m_Limelight = limelight;
     m_Drivetrain = drivetrain;
     this.autoPath = autoPath;
@@ -56,7 +56,7 @@ public class LineUpWithCubePath extends Command {
     m_xPIDController.setTolerance(0.2);
     m_xPIDController.setSetpoint(xGoal);
 
-    m_yPIDController.setTolerance(1);
+    m_yPIDController.setTolerance(2);
     m_yPIDController.setSetpoint(0);
 
     m_rotPIDController.setTolerance(1);
@@ -69,6 +69,10 @@ public class LineUpWithCubePath extends Command {
     m_Limelight.updateLimeLight();
 
     xSpeed = m_xPIDController.calculate(m_Drivetrain.getPose().getX());
+
+    System.out.println(m_Drivetrain.getPose().getX());
+    System.out.println(xSpeed);
+
     ySpeed = m_yPIDController.calculate(m_Limelight.getTX());
     rotSpeed = m_rotPIDController.calculate(m_Drivetrain.getRotation().getDegrees());
 

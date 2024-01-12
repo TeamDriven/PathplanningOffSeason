@@ -9,15 +9,8 @@ import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
 
 public class ScanCone extends Command {
-    private final double maxSpeed = 6.0;
 
-    private PIDController m_drivePIDController = new PIDController(0.01, 0.0, 0.0);
     private final Limelight m_Limelight;
-
-    private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
-            .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
-
-    private double ySpeed;
 
 
   /**
